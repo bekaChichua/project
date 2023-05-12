@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+thermostat:
+  tempEndpoint: "/temp"
+  getAllEndpoint: "/all"
+  max: 100
+  min: 1
+
+api:
+  url: http://localhost:8080/api/v1/thermostat
+  method: PATCH
+  readTimeOut: 2
+  connectionTimeOut: 2

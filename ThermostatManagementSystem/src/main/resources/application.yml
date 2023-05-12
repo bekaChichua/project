@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+security:
+  key: kXp2s5u8x/A?D(G+KbPeShVmYq3t6w9y$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNd
+spring:
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      connection-timeout: 20000
+      minimum-idle: 5
+      maximum-pool-size: 15
+      idleTimeout: 30000
+      maxLifetime: 1800000
+      pool-name: MySql-Pool
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          filter:
+            CommonsRequestLoggingFilter: debug
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    username: user
+    password: root
+    url: jdbc:mysql://database:3306/thermostat?createDatabaseIfNotExist=true
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/thermostat?createDatabaseIfNotExist=true
+---
+
